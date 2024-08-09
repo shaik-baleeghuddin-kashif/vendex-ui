@@ -1,7 +1,7 @@
 
 const Maintenances = () => {
   return (
-    <div>Maintenances</div>
+    <div className="w-full h-screen max-h-screen p-10">Maintenances</div>
   )
 }
 

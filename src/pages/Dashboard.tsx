@@ -1,7 +1,7 @@
 
 const Dashboard = () => {
   return (
-    <div>Dashboard</div>
+    <div className="w-full h-screen max-h-screen p-10">Dashboard</div>
   )
 }
 

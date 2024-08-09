@@ -1,7 +1,7 @@
 
 const Vendors = () => {
   return (
-    <div>Vendors</div>
+    <div className="w-full h-screen max-h-screen p-10">Vendors</div>
   )
 }
 

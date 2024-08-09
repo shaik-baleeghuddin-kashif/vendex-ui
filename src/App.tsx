@@ -6,6 +6,7 @@ import Circuits from './pages/Circuits';
 import Sites from './pages/Sites';
 import Maintenances from './pages/Maintenances';
 import Admin from './pages/Admin';
+import NotFound from './pages/NotFound';
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
           <Route path='/sites' element={<Sites />} />
           <Route path='/maintenances' element={<Maintenances />} />
           <Route path='/admin' element={<Admin />} />
+          <Route path='*' element={<NotFound />} />
         </Routes>
       </Router>
     </div>
