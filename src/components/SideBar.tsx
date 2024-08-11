@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 import { MdAdminPanelSettings, MdCable, MdDashboard } from "react-icons/md";
 import { useLocation } from "react-router-dom";
 import { FaUserCog } from "react-icons/fa";
-import { BsBuildingsFill } from "react-icons/bs";
 import { GiAutoRepair } from "react-icons/gi";
+import { ImOffice } from "react-icons/im";
 
 
 const SideBar = () => {
@@ -34,7 +34,7 @@ const SideBar = () => {
             initial={{ width: isExpanded ? 200 : 80 }}
             animate={{ width: isExpanded ? 200 : 80 }}
             transition={{ duration: 0.3 }}
-            className="bg-green-100 flex flex-col border-r-4 border-r-green-500 rounded-r-lg py-10 px-2 items-center gap-10"
+            className="h-screen overflow-hidden bg-green-100 flex flex-col border-r-4 border-r-green-500 rounded-r-lg py-10 px-2 items-center gap-10"
         >
             <motion.div
                 initial={{ opacity: 0, x: -20 }}
@@ -48,7 +48,7 @@ const SideBar = () => {
                 </div>
             ) : (
                 <div className="flex w-full justify-center items-center cursor-pointer" onClick={handlesidebar}>
-                    <img src="/logo.svg" className="w-[40px] h-[40px]" alt="vendex-logo" />
+                    <img src="/logo.svg" className="w-[32px] h-[32px]" alt="vendex-logo" />
                 </div>
             )}
             </motion.div>
@@ -134,7 +134,7 @@ const SideBar = () => {
                             className={`w-full bg-gradient-to-br from-green-500 via-teal-500 to-blue-500 rounded-lg  ${isSitesPage ? 'text-white' : 'p-[2px]'}`}
                         >
                             <div className={`flex ${isSitesPage ? '' : 'bg-slate-100 rounded-lg text-green-500'} ${isExpanded ? 'px-4 py-2 gap-2' : 'p-2 justify-center'}`}>
-                            <BsBuildingsFill size={isExpanded ? 18 : 20} />
+                            <ImOffice size={isExpanded ? 18 : 20} />
                             {isExpanded ? (
                                 <motion.div
                                 initial={{ opacity: 0, x: -10 }}
@@ -166,7 +166,7 @@ const SideBar = () => {
                                 transition={{ duration: 0.3 }}
                                 className="text-xs"
                                 >
-                                    Maintenances
+                                    Maintenance
                                 </motion.div>
                             ) : (
                                 <div className="hidden"></div>

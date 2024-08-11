@@ -4,6 +4,7 @@ import { Alert } from "flowbite-react";
 import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell, Paper } from "@mui/material";
 import SiteCard from "../components/SiteCard"
 import SearchBar from "../components/SearchBar"
+import PageStyle from "../layouts/PageStyle"
 import { HiInformationCircle } from 'react-icons/hi';
 import { FaTable } from 'react-icons/fa6';
 import SiteTable from '../components/SiteTable';
@@ -36,14 +37,7 @@ const Sites = () => {
   const [filteredSites, setFilteredSites] = useState<Site[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [isTable, setIsTable] = useState<boolean>(() => {
-    const saved = localStorage.getItem('isTable');
-    return saved === null ? true : JSON.parse(saved);
-});
-
-useEffect(() => {
-    localStorage.setItem('isTable', JSON.stringify(isTable));
-}, [isTable]);
+  const [isTable, setIsTable] = useState(false)
 
   const fetchData = async () => {
     try {
@@ -53,6 +47,7 @@ useEffect(() => {
         throw new Error('Network response was not ok ' + response.statusText);
       }
       const data = await response.json();
+    //   console.log(data);
       setSites(data);
       setFilteredSites(data);
       setError(null);
@@ -74,6 +69,7 @@ useEffect(() => {
 
   const handleSearch = (searchTerm: string) => {
     const lowercasedTerm = searchTerm.toLowerCase();
+    console.log("Search Term:", lowercasedTerm); // Log the search term
 
     const filteredSites = sites.filter((site) => {
       const matchesPoc = site.poc?.some(poc =>
@@ -96,20 +92,21 @@ useEffect(() => {
       );
     });
 
-    // console.log("Filtered Sites:", filteredSites); // Log the filtered sites
+    console.log("Filtered Sites:", filteredSites); // Log the filtered sites
     setFilteredSites(filteredSites);
   };
+
   return (
-    <div className="w-full h-screen max-h-screen p-5">
-      <div className="flex flex-col gap-2">
-        <div className="flex p-2  w-[95%] h-[50px] self-center whitespace-normal gap-5">
+    <PageStyle>
+      <div className="m-5 flex flex-col gap-4">
+        <div className="flex py-2 px-10 w-[95%] self-center whitespace-normal gap-5">
             {isTable ? (
                 <FaTable size="24" className='self-center whitespace-normal text-green-600 cursor-pointer' onClick={handleTable} />
             ) : (
                 <FaTable size="24" className='self-center whitespace-normal text-green-200 cursor-pointer' onClick={handleTable} />
             )}
             <SearchBar onSearch={handleSearch} />
-            <span className='self-center whitespace-normal text-gray-400 italic text-sm'>(Displaying {filteredSites.length} site results)</span>
+            <span className='self-center whitespace-normal text-gray-400 italic'>(Displaying {filteredSites.length} site results)</span>
         </div>
         <div className="w-[95%] h-[3px] bg-green-500 rounded-lg self-center whitespace-normal"></div>
         {error ? (
@@ -182,8 +179,8 @@ useEffect(() => {
           </>
         )}
       </div>
-    </div>
-  )
-}
+    </PageStyle>
+  );
+};
 
-export default Sites
+export default Sites;
